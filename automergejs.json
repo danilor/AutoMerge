@@ -12,6 +12,11 @@
         "type":"file"
       },
       {
+        "path":"assets/js/config",
+        "type":"folder",
+        "pattern": "[A-Za-z0-9_]+\\.config\\.js"
+      },
+      {
         "path":"assets/js/resposive_turnjs.js",
         "type":"file"
       },
