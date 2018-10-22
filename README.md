@@ -23,7 +23,7 @@ The rules file has the following structure
             -   output: The output file for this rules
             -   files: array of files we want to merge (the order is the one of the array)
                 -   path: the path of the file
-                -   type: the type of the file. Right now it supports only "file" as a type, in the future it will support folder as the type
+                -   type: the type of the file. Right now it supports "file" and "folder"
                 
                 
 ### Example file
