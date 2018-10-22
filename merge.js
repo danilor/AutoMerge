@@ -29,7 +29,7 @@ function readFileContent( path ){
 }
 
 function writeFile( path , content ){
-    fs.writeFile( path , content, function(err) {
+    fs.writeFileSync( path , content, function(err) {
         if(err) {
             stopAndError(err);
         }
@@ -37,12 +37,63 @@ function writeFile( path , content ){
     });
 }
 
+function readFolderFiles( path, pattern ){
+    console.log( 'Reading Files of folder: ' + path , ' | ' + pattern );
+    let content = '';
+    // console.log( 'Preparing to read' );
+    let files = [];
+    try{
+        files = fs.readdirSync(path);
+    }catch (e) {
+        console.log( 'Error reading the folder: ' + path );
+        process.exit();
+    }
+
+    // console.log( files );
+
+    files.forEach(file => {
+        const regex = new RegExp( pattern, 'gi' );
+        // console.log('File Regex' , file ,  regex );
+        const r = file.match( regex );
+        if( r !== null ){
+            console.log( '  ===>   ' +  path + '/' + file + ' | ' + pattern);
+            const read = readFileContent( path + '/' + file );
+            // console.log( read );
+            content += read;
+
+        }
+        // console.log( regex, r );
+    });
+
+    /*fs.readdirSync(path, (err, files) => {
+        files.forEach(file => {
+            console.log('File Regex' , file ,  regex );
+            const regex = new RegExp( pattern, 'gi' );
+            const r = file.match( regex );
+            if( r !== null ){
+                console.log( '  ===>   ' +  path + '/' + file + ' | ' + pattern);
+                const read = readFileContent( path + '/' + file );
+                console.log( read );
+                content += read;
+
+            }
+            // console.log( regex, r );
+        });
+    });*/
+    return content;
+}
+
+
 function analyzeItem( item ){
     // console.log( 'Reading item', item );
     let content = '';
+    console.log( ' -> Registry type: ' + item.type);
     if( item.type === 'file' ){
-        console.log( ' -> Registry type: file ');
         content = readFileContent( item.path ) + '\n\n';
+    }
+    if( item.type === 'folder' ){
+        content = readFolderFiles( item.path, item.pattern ) + '\n\n';
+        // content = readFileContent( item.path ) + '\n\n';
     }
     return content;
 }
