@@ -1,0 +1,38 @@
+[
+  {
+    "output": "assets/bundle/bundle.js",
+    "files": [
+
+      {
+        "path":"assets/vendor/jquery/3.3.1/jquery.js",
+        "type":"file"
+      },
+      {
+        "path":"assets/vendor/turnjs4/lib/turn.js",
+        "type":"file"
+      },
+      {
+        "path":"assets/js/resposive_turnjs.js",
+        "type":"file"
+      },
+      {
+        "path":"assets/js/script.js",
+        "type":"file"
+      },
+      {
+        "path":"assets/js/start.js",
+        "type":"file"
+      }
+    ]
+  },
+  {
+    "output": "assets/bundle/bundle.css",
+    "files": [
+
+      {
+        "path":"assets/css/style.css",
+        "type":"file"
+      }
+    ]
+  }
+]
